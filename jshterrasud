@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Terrains d'Abidjan | Société Foncière - Vente de terrains autour d'Abidjan</title>
+  <!-- Font Awesome 6 (gratuit, icônes) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts : Poppins & Playfair Display -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fefcf5;
+      color: #2c2b28;
+      scroll-behavior: smooth;
+    }
+
+    h1, h2, h3, .logo {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* HEADER & NAVIGATION */
+    header {
+      background: #ffffffea;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+      position: sticky;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      border-bottom: 1px solid #e9e5d8;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+      flex-wrap: wrap;
+    }
+
+    .logo h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #2d6a4f;
+      letter-spacing: -0.5px;
+    }
+    .logo span {
+      font-weight: 400;
+      font-size: 0.9rem;
+      color: #b68b40;
+      display: block;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #2c3e2b;
+      transition: 0.2s;
+      font-size: 1rem;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: #b76e2e;
+      border-bottom: 2px solid #b76e2e;
+      padding-bottom: 4px;
+    }
+
+    .btn-contact {
+      background: #2d6a4f;
+      color: white !important;
+      padding: 8px 20px;
+      border-radius: 40px;
+      border: none;
+      font-weight: 600;
+    }
+    .btn-contact:hover {
+      background: #1f543e;
+      border-bottom: none !important;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      background: linear-gradient(105deg, #f7f3e9 0%, #e7e0cf 100%);
+      padding: 70px 0 80px;
+      position: relative;
+    }
+    .hero-grid {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 40px;
+    }
+    .hero-content {
+      flex: 1.2;
+    }
+    .hero-content h1 {
+      font-size: 3.2rem;
+      line-height: 1.2;
+      font-weight: 700;
+      color: #2c5e3a;
+      margin-bottom: 20px;
+    }
+    .hero-content p {
+      font-size: 1.1rem;
+      color: #4a4a44;
+      margin: 20px 0 30px;
+      line-height: 1.5;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      margin-top: 20px;
+    }
+    .stat h3 {
+      font-size: 2rem;
+      color: #b56a2c;
+    }
+    .hero-image {
+      flex: 0.9;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 25px 35px -12px rgba(0,0,0,0.2);
+    }
+    .hero-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* FEATURED TERRAINS */
+    .section-title {
+      text-align: center;
+      font-size: 2.3rem;
+      margin-bottom: 16px;
+      color: #2c5e3a;
+    }
+    .section-sub {
+      text-align: center;
+      color: #6c6b62;
+      margin-bottom: 48px;
+      font-size: 1.1rem;
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 30px;
+      margin: 40px 0 30px;
+    }
+    .card {
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      border: 1px solid #f0ebdf;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 36px rgba(0,0,0,0.1);
+    }
+    .card-img {
+      height: 220px;
+      background-size: cover;
+      background-position: center;
+    }
+    .card-content {
+      padding: 24px;
+    }
+    .card-location {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #b76e2e;
+      font-weight: 500;
+      margin-bottom: 12px;
+      font-size: 0.9rem;
+    }
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .card-desc {
+      color: #5a5a52;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      margin-bottom: 20px;
+    }
+    .price {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #2d6a4f;
+      margin-bottom: 20px;
+    }
+    .btn-card {
+      background: none;
+      border: 1.5px solid #2d6a4f;
+      padding: 10px 0;
+      width: 100%;
+      border-radius: 40px;
+      font-weight: 600;
+      color: #2d6a4f;
+      cursor: pointer;
+      transition: 0.2s;
+      font-family: inherit;
+    }
+    .btn-card:hover {
+      background: #2d6a4f;
+      color: white;
+    }
+
+    /* SECTEUR & CARTE */
+    .secteur {
+      background: #f3efe7;
+      padding: 70px 0;
+      margin: 40px 0 0;
+    }
+    .secteur-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: center;
+    }
+    .secteur-info {
+      flex: 1;
+    }
+    .secteur-info h3 {
+      font-size: 1.9rem;
+      color: #2d6a4f;
+      margin-bottom: 20px;
+    }
+    .zones-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin: 30px 0;
+    }
+    .zone-badge {
+      background: white;
+      padding: 10px 22px;
+      border-radius: 60px;
+      font-weight: 500;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .secteur-map {
+      flex: 1;
+      background: #dfd8ca;
+      border-radius: 32px;
+      overflow: hidden;
+      min-height: 300px;
+      position: relative;
+    }
+    .map-placeholder {
+      width: 100%;
+      height: 100%;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Abidjan_%28cropped%29.png/800px-Abidjan_%28cropped%29.png') center/cover no-repeat, #cbbfaa;
+      background-size: cover;
+      min-height: 300px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 20px;
+      color: #1e3a2f;
+      font-weight: bold;
+      text-shadow: 0 1px 2px white;
+    }
+
+    /* FORMULAIRE DE CONTACT */
+    .contact {
+      padding: 70px 0;
+    }
+    .contact-wrapper {
+      background: white;
+      border-radius: 40px;
+      padding: 48px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+    .contact-info {
+      flex: 1;
+    }
+    .contact-info h3 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+    .contact-detail {
+      display: flex;
+      gap: 18px;
+      margin: 28px 0;
+      align-items: center;
+    }
+    .contact-detail i {
+      font-size: 1.8rem;
+      color: #b76e2e;
+      width: 40px;
+    }
+    .contact-form {
+      flex: 1.2;
+    }
+    .input-group {
+      margin-bottom: 20px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1px solid #e2dbcd;
+      border-radius: 30px;
+      font-family: inherit;
+      background: #fefcf8;
+    }
+    textarea {
+      border-radius: 24px;
+      resize: vertical;
+    }
+    button[type="submit"] {
+      background: #2d6a4f;
+      color: white;
+      border: none;
+      padding: 14px 30px;
+      border-radius: 40px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    button[type="submit"]:hover {
+      background: #1f543e;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #1e2f28;
+      color: #ddd9ce;
+      padding: 40px 0 20px;
+    }
+    .footer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+    .footer-logo h4 {
+      font-size: 1.8rem;
+      color: #e9c891;
+    }
+    .social i {
+      font-size: 1.6rem;
+      margin-right: 15px;
+      color: #cbb87b;
+      transition: 0.2s;
+    }
+    .copyright {
+      text-align: center;
+      border-top: 1px solid #3a4d42;
+      padding-top: 24px;
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 900px) {
+      .navbar {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+      }
+      .hero-content h1 {
+        font-size: 2.4rem;
+      }
+      .hero-grid {
+        flex-direction: column;
+      }
+      .contact-wrapper {
+        padding: 28px;
+      }
+    }
+    .btn-message {
+      background: #f5e7d3;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="navbar">
+        <div class="logo">
+          <h2>TERRASUD <span>Foncier & Investissement</span></h2>
+        </div>
+        <ul class="nav-links">
+          <li><a href="#" class="active">Accueil</a></li>
+          <li><a href="#terrains">Terrains</a></li>
+          <li><a href="#secteurs">Secteurs</a></li>
+          <li><a href="#contact" class="btn-contact">Nous contacter</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero section -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <h1>Investissez dans la terre <br> autour d’Abidjan</h1>
+          <p>Votre partenaire de confiance pour l’acquisition de terrains constructibles et agricoles dans les zones à fort potentiel : Dabou, Anyama, Bingerville, Grand-Lahou, et bien plus. Sécurité juridique et accompagnement sur mesure.</p>
+          <div class="hero-stats">
+            <div class="stat"><h3>+120</h3><p>Parcelles vendues</p></div>
+            <div class="stat"><h3>15+</h3><p>Zones desservies</p></div>
+            <div class="stat"><h3>98%</h3><p>Clients satisfaits</p></div>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Terrains luxuriants autour d'Abidjan" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- Terrains en vedette -->
+    <section id="terrains" class="container" style="margin-top: 70px;">
+      <h2 class="section-title">Nos terrains exclusifs</h2>
+      <p class="section-sub">Parcelles viabilisées ou en pleine nature, à quelques kilomètres d'Abidjan</p>
+      <div class="cards-grid" id="terrains-list">
+        <!-- Les cartes seront injectées dynamiquement via JS mais également présentes en HTML pur pour compatibilité -->
+      </div>
+    </section>
+
+    <!-- Secteurs / zones autour d'abidjan -->
+    <section id="secteurs" class="secteur">
+      <div class="container secteur-grid">
+        <div class="secteur-info">
+          <h3>Les zones stratégiques autour d'Abidjan</h3>
+          <p>Nous couvrons les localités les plus prometteuses pour l'immobilier foncier : axes routiers en développement, proximité avec le grand Abidjan, et cadre de vie exceptionnel.</p>
+          <div class="zones-list" id="zone-list">
+            <!-- dynamique + statique -->
+          </div>
+          <p style="margin-top: 20px;"><i class="fas fa-check-circle" style="color:#b76e2e;"></i> Titres fonciers sécurisés & études de sol disponibles</p>
+        </div>
+        <div class="secteur-map">
+          <div class="map-placeholder">
+            🌍 Carte interactive — zones : Dabou, Anyama, Bingerville, Songon, Azaguié
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Formulaire de contact & demande info -->
+    <section id="contact" class="contact">
+      <div class="container contact-wrapper">
+        <div class="contact-info">
+          <h3>Prenons contact</h3>
+          <p>Une question sur un terrain, besoin de conseils personnalisés ? Notre équipe vous répond sous 24h.</p>
+          <div class="contact-detail">
+            <i class="fas fa-phone-alt"></i> <span>+225 07 69 12 34 56</span>
+          </div>
+          <div class="contact-detail">
+            <i class="fas fa-envelope"></i> <span>contact@terrasud.ci</span>
+          </div>
+          <div class="contact-detail">
+            <i class="fas fa-map-marker-alt"></i> <span>Cocody, Abidjan – Plateau Danga</span>
+          </div>
+        </div>
+        <div class="contact-form">
+          <form id="contactForm">
+            <div class="input-group">
+              <input type="text" placeholder="Nom complet" id="fullname" required>
+            </div>
+            <div class="input-group">
+              <input type="email" placeholder="Email" id="email" required>
+            </div>
+            <div class="input-group">
+              <input type="tel" placeholder="Téléphone" id="phone">
+            </div>
+            <div class="input-group">
+              <select id="interest">
+                <option value="">Je cherche un terrain pour...</option>
+                <option>Résidence principale</option>
+                <option>Investissement locatif</option>
+                <option>Projet agricole</option>
+                <option>Commerce / activité</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <textarea rows="3" placeholder="Votre message (secteur souhaité, budget...)" id="message"></textarea>
+            </div>
+            <button type="submit">Envoyer la demande <i class="fas fa-paper-plane"></i></button>
+            <p id="form-feedback" style="margin-top: 12px; font-size: 0.8rem;"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-logo">
+          <h4>TERRASUD</h4>
+          <p>Foncier & conseil depuis 2012</p>
+        </div>
+        <div class="social">
+          <i class="fab fa-facebook-f"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-whatsapp"></i>
+          <i class="fab fa-linkedin-in"></i>
+        </div>
+      </div>
+      <div class="copyright">
+        © 2025 TerraSud - Vente de terrains autour d'Abidjan. Tous droits réservés.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Données des terrains (autour d'Abidjan)
+    const terrainsData = [
+      {
+        id: 1,
+        title: "Domaine de la Mé",
+        location: "Anyama - 25 min du Plateau",
+        description: "Terrain plat de 600 m², viabilisé, proche axe principal. Cadre verdoyant, école et marché à proximité.",
+        price: "12 500 000 FCFA",
+        img: "https://images.pexels.com/photos/106416/pexels-photo-106416.jpeg?auto=compress&cs=tinysrgb&w=600"
+      },
+      {
+        id: 2,
+        title: "Lotissement Bellevue",
+        location: "Bingerville - Vue imprenable",
+        description: "Parcelle de 850 m² avec vue sur la lagune. Idéal villa haut standing, accès bitumé.",
+        price: "21 900 000 FCFA",
+        img: "https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=600"
+      },
+      {
+        id: 3,
+        title: "Horizon Vert",
+        location: "Dabou - 45 min d'Abidjan",
+        description: "Grand terrain agricole/constructible 1 200 m². Proche route nationale, sol riche. Parfait pour projet éco-responsable.",
+        price: "9 800 000 FCFA",
+        img: "https://images.pexels.com/photos/2189832/pexels-photo-2189832.jpeg?auto=compress&cs=tinysrgb&w=600"
+      },
+      {
+        id: 4,
+        title: "Azaguié Village",
+        location: "Azaguié - futur pôle urbain",
+        description: "Parcelle 500 m² à prix promotionnel, lotissement sécurisé. Accès eau/électricité en cours.",
+        price: "6 950 000 FCFA",
+        img: "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=600"
+      }
+    ];
+
+    // Zones autour d'Abidjan
+    const zones = ["Anyama", "Bingerville", "Dabou", "Songon", "Azaguié", "Grand-Lahou", "Jacqueville", "Alépé"];
+
+    // Remplir la section cartes terrains
+    const container = document.getElementById("terrains-list");
+    if (container) {
+      terrainsData.forEach(terrain => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <div class="card-img" style="background-image: url('${terrain.img}');"></div>
+          <div class="card-content">
+            <div class="card-location"><i class="fas fa-map-pin"></i> ${terrain.location}</div>
+            <div class="card-title">${terrain.title}</div>
+            <div class="card-desc">${terrain.description}</div>
+            <div class="price">${terrain.price}</div>
+            <button class="btn-card request-btn" data-terrain="${terrain.title}">Demander un rendez-vous</button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      // Ajouter event listener aux boutons "Demander un rendez-vous"
+      document.querySelectorAll(".request-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          const terrainNom = btn.getAttribute("data-terrain");
+          const messageArea = document.getElementById("message");
+          if (messageArea) {
+            messageArea.value = `Bonjour, je suis intéressé(e) par le terrain "${terrainNom}". Merci de me contacter pour plus d'informations.`;
+            document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+          } else {
+            window.location.href = "#contact";
+          }
+        });
+      });
+    }
+
+    // Remplir les zones dynamiquement dans la section badges
+    const zoneContainer = document.getElementById("zone-list");
+    if (zoneContainer) {
+      zones.forEach(zone => {
+        const badge = document.createElement("div");
+        badge.className = "zone-badge";
+        badge.innerHTML = `<i class="fas fa-location-dot" style="margin-right: 6px; color:#b76e2e;"></i> ${zone}`;
+        zoneContainer.appendChild(badge);
+      });
+    }
+
+    // Gestion du formulaire de contact (simulation envoi + alerte locale)
+    const form = document.getElementById("contactForm");
+    const feedback = document.getElementById("form-feedback");
+    if (form) {
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name = document.getElementById("fullname").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const interest = document.getElementById("interest").value;
+        const message = document.getElementById("message").value.trim();
+
+        if (!name || !email) {
+          feedback.style.color = "#b85c1a";
+          feedback.innerHTML = "Veuillez renseigner votre nom et email svp.";
+          return;
+        }
+        // simulation d'envoi
+        feedback.style.color = "#2d6a4f";
+        feedback.innerHTML = "✅ Merci ! Un conseiller vous recontactera sous 24h pour les terrains autour d'Abidjan.";
+        form.reset();
+        setTimeout(() => {
+          feedback.innerHTML = "";
+        }, 5000);
+
+        // Vous pouvez remplacer ceci par un vrai endpoint
+        console.log("Demande de contact:", { name, email, phone, interest, message });
+      });
+    }
+
+    // Scroll smooth pour les ancres et active link
+    document.querySelectorAll('.nav-links a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === "#") return;
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+          // Mise à jour active (simple)
+          document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+          this.classList.add('active');
+        }
+      });
+    });
+
+    // Mise en avant du bouton contact déjà intégré
+    const contactBtnHeader = document.querySelector('.btn-contact');
+    if(contactBtnHeader) {
+      contactBtnHeader.addEventListener('click', (e) => {
+        e.preventDefault();
+        const contactSection = document.getElementById('contact');
+        if(contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
+      });
+    }
+
+    // Petit effet pour le header active lors du scroll
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('section, #terrains, #secteurs, #contact');
+      const navLinks = document.querySelectorAll('.nav-links a');
+      let current = "";
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        if (pageYOffset >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if(link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
